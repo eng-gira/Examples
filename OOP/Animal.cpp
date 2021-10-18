@@ -3,15 +3,13 @@
 
 #include "Animal.h"
 
-using std::cout;
-using std::endl;
 
-string Animal::getName()
+std::string Animal::getName()
 {
     return name;
 }
 
-void Animal::setName(string n)
+void Animal::setName(std::string n)
 {
     name = n;
 }
@@ -26,12 +24,22 @@ void Animal::setSpeed(int s)
     speed = s;
 }
 
-void Animal::eat(string food)
+int Animal::getFeet()
 {
-    cout << "Animal (" << Animal::getName() << ") is eating." << endl;
+    return feet;
+}
+
+void Animal::setFeet(int f)
+{
+    feet = f;
+}
+
+void Animal::eat(std::string food)
+{
+    std::cout << "Animal (" << Animal::getName() << ") is eating." << std::endl;
 }
 
 void Animal::move(int distance, int speed)
 {
-    cout << "Animal " << Animal::getName() << " moved " << distance << " distance units at a speed of " << speed << " speed units." << endl;
+    std::cout << "Animal " << Animal::getName() << " moved " << distance << " distance units at a speed of " << speed << " speed units." << std::endl;
 }

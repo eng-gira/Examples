@@ -40,6 +40,13 @@ int Player::getLevel()
     return level;
 }
 
+void displayAnimal(Animal a)
+{
+    cout << "Name: " << a.getName() << endl;
+    cout << "Speed: " << a.getSpeed() << endl;
+    cout << "Feet: " << a.getFeet() << endl;
+}
+
 int main()
 {
 
@@ -69,6 +76,22 @@ int main()
     lion.setName("Lion");
     lion.eat("meat");
     lion.move(10, 5);
+
+    Animal giraffe {"grf"};
+    cout << giraffe.getName() << endl;
+
+
+    Animal someAnimal;
+    cout << someAnimal.getName() << endl;
+
+    Animal anotherAnimal {someAnimal}; // Copy Constructor
+
+    displayAnimal(anotherAnimal);
+
+    // Animal cheetah{4};
+    // cheetah.setName("Cheetah");
+
+
 
     return 0;
 }
