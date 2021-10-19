@@ -47,6 +47,50 @@ void displayAnimal(Animal a)
     cout << "Feet: " << a.getFeet() << endl;
 }
 
+
+//You always want to use a copy constructor that does a deep copy when you have raw cpp pointers.
+class DeepCopyExample 
+{
+    private:
+        int *data;
+
+    public:
+        DeepCopyExample(int d);
+        DeepCopyExample(const DeepCopyExample &source); // Copy Constructor
+
+        int settDataValue(int v) {*data = v;}
+        int getDataValue() {return *data;}
+
+        ~DeepCopyExample();
+};
+DeepCopyExample::DeepCopyExample(int d)
+{
+    data = new int;
+    *data = d;
+}
+DeepCopyExample::~DeepCopyExample()
+{
+    delete data;
+    cout << "Destructor freed data." << endl;
+}
+DeepCopyExample::DeepCopyExample(const DeepCopyExample &source)
+{
+    //create new storage and copy value
+    data = new int;
+    *data = *source.data;
+    cout << "Copy Constructor -- deep" << endl;
+}
+//Alternative
+// DeepCopyExample::DeepCopyExample(const DeepCopyExample &source) : DeepCopyExample{*source.data}
+// {
+//     cout << "Copy Constructor -- deep" << endl;
+// }
+
+void displayDeepCopyExample(DeepCopyExample d)
+{
+    cout << d.getDataValue() << endl;
+}
+
 int main()
 {
 
@@ -91,6 +135,10 @@ int main()
     // Animal cheetah{4};
     // cheetah.setName("Cheetah");
 
+    DeepCopyExample obj1 {30};
+    displayDeepCopyExample(obj1);
+
+    cout << "...." << endl;
 
 
     return 0;
