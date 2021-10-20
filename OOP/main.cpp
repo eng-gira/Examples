@@ -31,8 +31,12 @@ class Player
     {
         level++;
     }
-
     int getLevel();
+
+    string getName() const  // tell the compiler that this method won't modify the object
+    {
+        return name;
+    }
 };
 
 int Player::getLevel()
@@ -137,9 +141,9 @@ int main()
 
     DeepCopyExample obj1 {30};
     displayDeepCopyExample(obj1);
-
     cout << "...." << endl;
 
+    
 
     return 0;
 }

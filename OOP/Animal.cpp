@@ -4,6 +4,17 @@
 #include "Animal.h"
 
 
+int Animal::numAnimals {0};
+
+
+
+int Animal::getNumAnimals()
+{
+    //since this is a static method, it only has access to static data members of the class.
+
+    return Animal::numAnimals;
+}
+
 std::string Animal::getName()
 {
     return name;

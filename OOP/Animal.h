@@ -8,16 +8,22 @@
 
 class Animal
 {
+    friend void abc(Animal &a); //has access to everything (even private members) in this class.
+    //friend void OtherClass::abcdef(Animal &animal); //declare a method of another class as a friend.
+    //friend class OtherClass; //declare a class as a friend.
+
     private:
     std::string name;
     int feet;
     int speed;
+    static int numAnimals;
 
 
     public:
     //Constructor with default parameter values
     Animal(std::string n = "Unnamed Animal", int s = 5, int f = 4) : name{n}, speed{s}, feet{f} {
-        std::cout << "Constructor with default params called." << std::endl;
+        numAnimals++;
+        std::cout << "Constructor with default params called. numAnimals = " << numAnimals << std::endl;
     }
     
     // Animal(int feet){
@@ -45,7 +51,9 @@ class Animal
       speed {animal.speed}, 
       feet {animal.feet}
     {
-        std::cout << "Copy Constructor called: a copy was made of " << animal.name << std::endl;
+        numAnimals++;
+        std::cout << "Copy Constructor called: a copy was made of " << animal.name << 
+            ". numAnimals = " << numAnimals << std::endl;
     }
 
     std::string getName();
@@ -60,9 +68,12 @@ class Animal
     void eat(std::string food);
     void move(int distance, int speed);
     
+    static int getNumAnimals();
+
     ~Animal()
     {
-        std::cout << "Destructor was called for animal " << getName() << "." << std::endl;
+        numAnimals--; 
+        std::cout << "Destructor was called for animal " << getName() << ". numAnimals = " << numAnimals << std::endl;
     }
     
 };
